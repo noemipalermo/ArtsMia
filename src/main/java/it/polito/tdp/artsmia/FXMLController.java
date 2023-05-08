@@ -47,12 +47,32 @@ public class FXMLController {
     
     @FXML
     void doAnalizzaOggetti(ActionEvent event) {
-
+    	this.model.buildGraph();
+    	if (this.model.isGraphCreated())
+    		txtResult.setText("Grafo correttamente creato.");
+    	else 
+    		txtResult.setText("Errore nella costruzione del grafo.");
+    
     }
 
     @FXML
     void doCalcolaComponenteConnessa(ActionEvent event) {
-
+    	
+    	String input =  this.txtObjectId.getText();
+    	Integer inputNum = 0;
+    	try {
+    		inputNum = Integer.parseInt(input);
+    	}catch(NumberFormatException e) {
+    		this.txtResult.setText("Inserire un numero!");
+    		return;
+    	}
+    	
+    	if(this.model.isIdInGraph(inputNum)) {
+    		int dimConnected = this.model.calcolaConnessa(inputNum);
+    		this.txtResult.setText("Il nodo " +input+ " fa parte di una componente connessa di dimensione "+dimConnected);
+    	}else {
+    		this.txtResult.setText("Id inserito non valido");
+    	}
     }
 
     @FXML

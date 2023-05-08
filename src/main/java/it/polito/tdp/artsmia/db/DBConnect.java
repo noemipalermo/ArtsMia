@@ -7,7 +7,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 public class DBConnect {
 
-	private static String jdbcURL = "jdbc:mysql://localhost/artsmia";
+	private static String jdbcURL = "jdbc:mariadb://localhost/artsmia";
 
 	private static HikariDataSource ds = null;
 
@@ -17,7 +17,7 @@ public class DBConnect {
 			HikariConfig config = new HikariConfig();
 			config.setJdbcUrl(jdbcURL);
 			config.setUsername("root");
-			config.setPassword("");
+			config.setPassword("root");
 			
 			//configurazione mysql
 			config.addDataSourceProperty("cachePrepStmts", "true");
